@@ -79,7 +79,7 @@ function Header() {
           </label>
 
           <div className="flex shrink-0 items-center gap-3 md:gap-4">
-            <a href="#" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/company/sermancl" aria-label="LinkedIn">
               <img
                 src={linkedinIcon}
                 alt=""
@@ -87,7 +87,7 @@ function Header() {
               />
             </a>
 
-            <a href="#" aria-label="Instagram">
+            <a href="https://www.instagram.com/sermanimpresorescl" aria-label="Instagram">
               <img
                 src={instagramIcon}
                 alt=""
