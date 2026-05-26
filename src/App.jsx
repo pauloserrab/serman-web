@@ -1,228 +1,385 @@
 import logoSerman from "./assets/logo-serman.svg";
-import heroMaquina from "./assets/hero-maquina.jpg";
-import producto1 from "./assets/producto-1.png";
-import producto2 from "./assets/producto-2.png";
-import producto3 from "./assets/producto-3.png";
-import producto4 from "./assets/producto-4.png";
+import linkedinIcon from "./assets/linkedin.svg";
+import instagramIcon from "./assets/instagram.svg";
 
-const categories = [
-  "Tarjetas",
-  "Folletos",
-  "Marcalibros",
-  "Invitaciones",
-  "Partes",
-  "Postales",
+import heroDesktop from "./assets/header-dk.jpg";
+import heroMobile from "./assets/header-mb.jpg";
+
+import trabajo1 from "./assets/Nuestrotrabajo-1-dk.png";
+import trabajo2 from "./assets/Nuestrotrabajo-2-dk.png";
+import trabajo3 from "./assets/Nuestrotrabajo-3-dk.png";
+import trabajo4 from "./assets/Nuestrotrabajo-4-dk.png";
+import trabajo5 from "./assets/Nuestrotrabajo-5-dk.png";
+import trabajo6 from "./assets/Nuestrotrabajo-6-dk.png";
+import trabajo7 from "./assets/Nuestrotrabajo-7-dk.png";
+import trabajo8 from "./assets/Nuestrotrabajo-8-dk.png";
+
+import callcenterIcon from "./assets/callcenter.svg";
+import produccionIcon from "./assets/produccion.svg";
+import envioIcon from "./assets/envio.svg";
+import trabajosExpressIcon from "./assets/trabajosexpres.svg";
+
+const FORM_EMAIL = "paulo.serra.b@gmail.com";
+const WHATSAPP_URL = "#";
+
+const navItems = [
+  "IMPRESIÓN DIGITAL",
+  "LETREROS",
+  "PENDONES",
+  "PLOTTER",
+  "VINILOS ADHESIVOS",
+  "STICKERS",
+  "TARJETAS DE PRESENTACIÓN",
+  "CARPETAS",
+  "PACKAGINGS",
+  "Y MÁS",
 ];
 
-const productImages = [producto1, producto2, producto3, producto4];
+const trabajos = [
+  trabajo1,
+  trabajo2,
+  trabajo3,
+  trabajo4,
+  trabajo5,
+  trabajo6,
+  trabajo7,
+  trabajo8,
+];
 
-const products = Array.from({ length: 20 }, (_, index) => ({
-  id: index + 1,
-  image: productImages[index % productImages.length],
-  name: "NOMBRE",
-}));
+const beneficios = [
+  {
+    titleLines: ["Cotización", "en 10 minutos"],
+    text: "Respuesta inmediata por WhatsApp por uno de nuestros ejecutivos.",
+    icon: callcenterIcon,
+  },
+  {
+    titleLines: ["Producción", "por volumen"],
+    text: "Especialistas en grandes tirajes offset.",
+    icon: produccionIcon,
+  },
+  {
+    titleLines: ["Región", "Metropolitana"],
+    text: "Despacho a todas las comunas de la Región.",
+    icon: envioIcon,
+  },
+  {
+    titleLines: ["Trabajos", "express"],
+    text: "Trabajos urgentes, con tiempos de entrega optimizados.",
+    icon: trabajosExpressIcon,
+  },
+];
 
-function Logo({ color = "white" }) {
-  const logoColor = color === "blue" ? "#2fa7bd" : "#ffffff";
-
+function Header() {
   return (
-    <div
-      aria-label="Serman Impresiones"
-      className="h-[50px] w-[170px]"
-      style={{
-        backgroundColor: logoColor,
-        WebkitMaskImage: `url(${logoSerman})`,
-        maskImage: `url(${logoSerman})`,
-        WebkitMaskRepeat: "no-repeat",
-        maskRepeat: "no-repeat",
-        WebkitMaskSize: "contain",
-        maskSize: "contain",
-        WebkitMaskPosition: "center",
-        maskPosition: "center",
-      }}
-    />
-  );
-}
+    <header className="bg-white">
+      <div className="bg-[#2ea9bf] px-5 py-5 md:px-9 md:py-6">
+        <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-5">
+          <a href="#" aria-label="Ir al inicio" className="shrink-0">
+            <img
+              src={logoSerman}
+              alt="Serman Impresores"
+              className="h-auto w-[150px] md:w-[225px]"
+            />
+          </a>
 
-function SidebarBox() {
-  return (
-    <aside className="w-full border border-[#abc3c9] bg-white">
-      <div className="bg-[#d9d9d9] px-6 py-4 text-2xl font-black text-[#15596a]">
-        Papelería
+          <label className="relative hidden w-full max-w-[470px] md:block">
+            <input
+              className="h-[42px] w-full rounded-full bg-white px-10 text-sm font-bold text-[#2ea9bf] outline-none placeholder:text-[#2ea9bf]"
+              placeholder="Buscar"
+            />
+          </label>
+
+          <div className="flex shrink-0 items-center gap-3 md:gap-4">
+            <a href="#" aria-label="LinkedIn">
+              <img
+                src={linkedinIcon}
+                alt=""
+                className="h-7 w-7 object-contain md:h-8 md:w-8"
+              />
+            </a>
+
+            <a href="#" aria-label="Instagram">
+              <img
+                src={instagramIcon}
+                alt=""
+                className="h-7 w-7 object-contain md:h-8 md:w-8"
+              />
+            </a>
+          </div>
+        </div>
+
+        <label className="mx-auto mt-5 block w-full max-w-[250px] md:hidden">
+          <input
+            className="h-[46px] w-full rounded-full bg-white px-10 text-center text-lg font-bold text-[#2ea9bf] outline-none placeholder:text-[#2ea9bf]"
+            placeholder="Buscar"
+          />
+        </label>
       </div>
 
-      <ul className="space-y-3 px-6 py-4 font-bold text-[#15596a]">
-        {categories.map((category) => (
-          <li
-            key={category}
-            className="flex items-center justify-between text-sm"
-          >
-            <span>{category}</span>
-            <span>›</span>
-          </li>
-        ))}
-      </ul>
-    </aside>
+      <nav className="overflow-x-auto whitespace-nowrap border-b border-slate-100 bg-white px-5 py-5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="mx-auto flex w-max min-w-full max-w-[1280px] items-center gap-6 text-sm font-black text-black md:justify-center md:gap-7">
+          {navItems.map((item, index) => (
+            <div key={item} className="flex items-center gap-6 md:gap-7">
+              <a href="#" className="hover:text-[#2ea9bf]">
+                {item}
+              </a>
+
+              {index < navItems.length - 1 && (
+                <span className="h-2 w-2 rounded-full bg-[#2ea9bf]" />
+              )}
+            </div>
+          ))}
+        </div>
+      </nav>
+    </header>
   );
 }
 
-function ProductCard({ product }) {
+function QuoteForm() {
   return (
-    <article className="group flex h-[195px] flex-col justify-between rounded-xl border-2 border-[#176778] bg-[#35a9bf] p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-      <div className="flex flex-1 items-center justify-center">
+    <form
+      action={`https://formsubmit.co/${FORM_EMAIL}`}
+      method="POST"
+      className="w-full rounded-xl bg-white/75 px-7 py-6 shadow-[22px_0_35px_rgba(0,0,0,0.12)] backdrop-blur-sm md:max-w-[435px] md:px-8"
+    >
+      <input type="hidden" name="_subject" value="Nueva cotización desde sitio Serman" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_template" value="table" />
+
+      <label className="mb-4 block">
+        <span className="mb-2 block text-sm font-black text-[#1b6170]">
+          Nombre completo <span className="font-medium">(Obligatorio)</span>
+        </span>
+        <input
+          name="Nombre completo"
+          required
+          className="h-9 w-full rounded-md bg-white px-3 text-[#1b6170] outline-none"
+        />
+      </label>
+
+      <label className="mb-4 block">
+        <span className="mb-2 block text-sm font-black text-[#1b6170]">
+          Correo electrónico <span className="font-medium">(Obligatorio)</span>
+        </span>
+        <input
+          type="email"
+          name="Correo electrónico"
+          required
+          className="h-9 w-full rounded-md bg-white px-3 text-[#1b6170] outline-none"
+        />
+      </label>
+
+      <label className="mb-4 block">
+        <span className="mb-2 block text-sm font-black text-[#1b6170]">
+          Teléfono de contacto
+        </span>
+        <input
+          name="Teléfono de contacto"
+          className="h-9 w-full rounded-md bg-white px-3 text-[#1b6170] outline-none"
+        />
+      </label>
+
+      <label className="mb-4 block">
+        <span className="mb-2 block text-sm font-black text-[#1b6170]">
+          Mensaje <span className="font-medium">(Obligatorio)</span>
+        </span>
+        <textarea
+          name="Mensaje"
+          required
+          className="h-24 w-full resize-none rounded-md bg-white px-3 py-2 text-[#1b6170] outline-none md:h-[96px]"
+        />
+      </label>
+
+      <button
+        type="submit"
+        className="mx-auto block h-9 w-[96px] rounded-md bg-black text-sm font-black text-white transition hover:bg-[#1b6170]"
+      >
+        Enviar
+      </button>
+    </form>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="relative overflow-hidden bg-[#03acd4]">
+      <picture className="absolute inset-0 block">
+        <source media="(max-width: 767px)" srcSet={heroMobile} />
         <img
-          src={product.image}
-          alt={product.name}
-          className="max-h-[125px] w-full object-contain drop-shadow-lg"
+          src={heroDesktop}
+          alt="Serman le da vida a tus ideas"
+          className="h-full w-full object-cover object-center"
+        />
+      </picture>
+
+      <div className="relative mx-auto flex min-h-[528px] max-w-[1280px] items-end px-7 pb-8 pt-[132px] md:min-h-[374px] md:items-center md:px-11 md:py-8">
+        <div className="w-full max-w-[277px] md:max-w-[435px]">
+          <QuoteForm />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function WhatsAppCta() {
+  return (
+    <section className="bg-white px-6 py-11 text-center md:py-12">
+      <h2 className="mx-auto max-w-4xl text-3xl font-black leading-tight text-black md:text-4xl">
+        También puedes cotizar en nuestro WhatsApp
+      </h2>
+      <p className="mt-2 text-2xl text-black md:text-3xl">
+        Obtén una respuesta más rápida
+      </p>
+      <a
+        href={WHATSAPP_URL}
+        className="mt-5 inline-flex h-[54px] min-w-[225px] items-center justify-center rounded-md bg-[#59c51c] px-8 text-xl font-black text-white transition hover:bg-[#45a915]"
+      >
+        Ir a WhatsApp
+      </a>
+    </section>
+  );
+}
+
+function WorkCard({ image, index }) {
+  return (
+    <article className="w-[236px] shrink-0 rounded-xl bg-white p-3 shadow-md ring-2 ring-[#078dab] md:w-[240px]">
+      <div className="flex h-[236px] items-center justify-center border-2 border-[#28a8be] bg-white p-5 md:h-[232px]">
+        <img
+          src={image}
+          alt={`Nuestro trabajo ${index + 1}`}
+          className="max-h-full w-full object-contain drop-shadow-xl"
         />
       </div>
-
-      <button className="mx-auto flex items-center gap-1 text-sm font-black tracking-wide text-white">
-        {product.name}
-        <span>›</span>
-      </button>
     </article>
+  );
+}
+
+function WorksSection() {
+  const loopItems = [...trabajos, ...trabajos];
+
+  return (
+    <section className="overflow-hidden bg-gradient-to-b from-[#2f9ed0] to-[#1eb4c7] px-0 py-12 md:py-12">
+      <h2 className="mx-auto max-w-[540px] px-6 text-center text-3xl font-black leading-tight text-white md:max-w-none md:text-3xl">
+        Inspírate y <span className="font-light italic">conoce</span> algunos de nuestros trabajos
+      </h2>
+
+      <div className="relative mx-auto mt-8 max-w-[1280px] overflow-hidden">
+        <div className="flex w-max animate-serman-carousel gap-10 px-8 md:gap-9 md:px-16">
+          {loopItems.map((image, index) => (
+            <WorkCard
+              key={`${index}-${image}`}
+              image={image}
+              index={index % trabajos.length}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-7 flex justify-center gap-2">
+        <span className="h-2.5 w-2.5 rounded-full bg-white" />
+        <span className="h-2.5 w-2.5 rounded-full bg-white" />
+        <span className="h-2.5 w-2.5 rounded-full bg-white" />
+      </div>
+    </section>
+  );
+}
+
+function BenefitsSection() {
+  return (
+    <section className="bg-white px-8 py-16 md:py-20">
+      <div className="mx-auto grid max-w-[1130px] grid-cols-1 gap-x-12 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+        {beneficios.map((beneficio) => (
+          <article key={beneficio.titleLines.join(" ")} className="flex items-center gap-4">
+            <div className="flex h-[92px] w-[92px] shrink-0 items-center justify-center">
+              <img
+                src={beneficio.icon}
+                alt=""
+                className="h-full w-full object-contain"
+              />
+            </div>
+
+            <div className="text-black">
+              <h3 className="text-2xl font-black leading-[0.9]">
+                {beneficio.titleLines.map((line) => (
+                  <span key={line} className="block">
+                    {line}
+                  </span>
+                ))}
+              </h3>
+              <p className="mt-1 max-w-[155px] text-sm leading-tight">
+                {beneficio.text}
+              </p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="bg-[#f0f0f0] px-8 py-12 md:py-14">
+      <div className="mx-auto grid max-w-[900px] gap-10 md:grid-cols-[1.2fr_1fr_1.2fr] md:items-start">
+        <div className="flex justify-center md:justify-start">
+          <img
+            src={logoSerman}
+            alt="Serman Impresores"
+            className="h-auto w-[270px]"
+          />
+        </div>
+
+        <div className="hidden text-xs leading-relaxed text-[#135c6c] md:block">
+          <h3 className="mb-1 text-lg font-black">Información:</h3>
+          <p>Compra online y retira GRATIS en nuestra tienda en Independencia.</p>
+          <p>Consulta por la instalación de gráficas corporativas en empresas.</p>
+          <p>Envíos a regiones.</p>
+          <p>Tiempo de producción:</p>
+          <p>Aproximadamente en 2 a 5 días hábiles.</p>
+        </div>
+
+        <div className="text-sm leading-relaxed text-[#135c6c] md:text-xs">
+          <h3 className="mb-1 text-2xl font-black md:text-lg">Contacto:</h3>
+          <p>N° de Contacto: +569 3084 2940</p>
+          <p>Horario de Atención:</p>
+          <p>Lunes a Viernes de 10:00hrs – 18:00hrs.</p>
+          <p>Correo: Serman@contacto.cl</p>
+          <p>Ubicación: Los nidos 1820, Independencia, RM.</p>
+        </div>
+      </div>
+
+      <style>{`
+        @keyframes serman-carousel {
+          from {
+            transform: translateX(0);
+          }
+
+          to {
+            transform: translateX(-50%);
+          }
+        }
+
+        .animate-serman-carousel {
+          animation: serman-carousel 28s linear infinite;
+        }
+
+        .animate-serman-carousel:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+    </footer>
   );
 }
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-white font-sans text-[#15596a]">
-      <header>
-        <div className="bg-[#2c9fb6] px-6 py-3">
-          <div className="mx-auto flex max-w-7xl items-center gap-8">
-            <div className="w-48 shrink-0">
-              <Logo />
-            </div>
-
-            <label className="relative mx-auto hidden w-full max-w-[460px] md:block">
-              <span className="absolute left-5 top-1/2 -translate-y-1/2 text-slate-700">
-                🔍
-              </span>
-
-              <input
-                className="h-10 w-full rounded-full bg-white px-12 text-sm font-bold text-slate-700 outline-none"
-                placeholder="Buscar"
-              />
-            </label>
-
-            <a
-              className="hidden items-center gap-2 text-sm font-bold leading-tight text-white lg:flex"
-              href="#contacto"
-            >
-              <span className="text-2xl">▤</span>
-              <span>
-                Cotiza
-                <br />
-                con nosotros
-              </span>
-            </a>
-
-            <div className="ml-auto flex gap-3 text-white">
-              <span className="font-bold">in</span>
-              <span>◎</span>
-            </div>
-          </div>
-        </div>
-
-        <nav className="border-b border-slate-100 bg-white px-6 py-5">
-          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-11 gap-y-4 text-sm font-black tracking-wide text-[#15596a]">
-            {[
-              "IMPRESION DIGITAL",
-              "LETREROS",
-              "PENDONES",
-              "LETREROS",
-              "PLOTEO",
-              "IMAGEN CORPORATIVA",
-              "SUBLIMACIÓN",
-            ].map((item) => (
-              <a
-                key={item}
-                href="#"
-                className="flex items-center gap-1 hover:text-[#2c9fb6]"
-              >
-                {item}
-                <span>▼</span>
-              </a>
-            ))}
-          </div>
-        </nav>
-      </header>
-
-      <section
-        className="relative overflow-hidden bg-cover bg-center"
-        style={{
-          backgroundImage: `
-            linear-gradient(
-              90deg,
-              rgba(255,255,255,0.95) 0%,
-              rgba(255,255,255,0.85) 35%,
-              rgba(255,255,255,0.25) 65%,
-              rgba(255,255,255,0) 100%
-            ),
-            url(${heroMaquina})
-          `,
-        }}
-      >
-        <div className="relative mx-auto max-w-7xl px-6 py-16 md:py-20">
-          <h1 className="max-w-lg text-5xl font-black leading-[0.95] tracking-[0.18em] text-[#3db1c7] md:text-6xl">
-            SOLUCIONES
-            <br />
-            GRÁFICAS
-            <br />
-            PARA TI
-          </h1>
-
-          <a
-            href="#contacto"
-            className="mt-7 inline-flex items-center gap-3 rounded-md bg-[#2ca6bd] px-8 py-4 text-lg font-black text-white shadow-lg transition hover:bg-[#16879d]"
-          >
-            COTIZA
-            <span>▶</span>
-          </a>
-        </div>
-      </section>
-
-      <main className="mx-auto grid max-w-6xl gap-10 px-6 py-16 lg:grid-cols-[250px_1fr]">
-        <div className="space-y-10">
-          <SidebarBox />
-          <SidebarBox />
-          <SidebarBox />
-        </div>
-
-        <section className="grid grid-cols-2 gap-7 md:grid-cols-3 xl:grid-cols-4">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </section>
-      </main>
-
-      <footer id="contacto" className="mt-20 bg-[#e9f5f7] px-6 py-12">
-        <div className="mx-auto grid max-w-4xl gap-10 md:grid-cols-[1.2fr_1fr_1.4fr]">
-          <Logo color="blue" />
-
-          <div className="text-xs leading-relaxed">
-            <h3 className="mb-1 text-lg font-black">Información:</h3>
-            <p>
-              Compra online y retira GRATIS en nuestra tienda en Independencia.
-            </p>
-            <p>
-              Consulta por la instalación de gráficas corporativas en empresas.
-            </p>
-            <p>Envíos a regiones.</p>
-            <p>Tiempo de producción: Aproximadamente 2 a 5 días hábiles.</p>
-          </div>
-
-          <div className="text-xs leading-relaxed">
-            <h3 className="mb-1 text-lg font-black">Contacto:</h3>
-            <p>N° de Contacto: +569 3084 2940</p>
-            <p>Horario de Atención:</p>
-            <p>Lunes a Viernes de 10:00hrs -18:00hrs.</p>
-            <p>Correo: Serman@contacto.cl</p>
-            <p>Ubicación: Los nidos 1820, Independencia, RM.</p>
-          </div>
-        </div>
-      </footer>
+    <div className="min-h-screen bg-white font-sans">
+      <Header />
+      <Hero />
+      <WhatsAppCta />
+      <WorksSection />
+      <BenefitsSection />
+      <Footer />
     </div>
   );
 }
