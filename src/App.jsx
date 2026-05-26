@@ -1,6 +1,8 @@
-import logoSerman from "./assets/logo-serman.svg";
+import logoHeader from "./assets/logo-serman-1.svg";
+import logoFooter from "./assets/logo-serman-2.svg";
 import linkedinIcon from "./assets/linkedin.svg";
 import instagramIcon from "./assets/instagram.svg";
+import carruselMenu from "./assets/carrusel.svg";
 
 import heroDesktop from "./assets/header-dk.jpg";
 import heroMobile from "./assets/header-mb.jpg";
@@ -21,19 +23,6 @@ import trabajosExpressIcon from "./assets/trabajosexpres.svg";
 
 const FORM_EMAIL = "paulo.serra.b@gmail.com";
 const WHATSAPP_URL = "#";
-
-const navItems = [
-  "IMPRESIÓN DIGITAL",
-  "LETREROS",
-  "PENDONES",
-  "PLOTTER",
-  "VINILOS ADHESIVOS",
-  "STICKERS",
-  "TARJETAS DE PRESENTACIÓN",
-  "CARPETAS",
-  "PACKAGINGS",
-  "Y MÁS",
-];
 
 const trabajos = [
   trabajo1,
@@ -76,13 +65,13 @@ function Header() {
         <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-5">
           <a href="#" aria-label="Ir al inicio" className="shrink-0">
             <img
-              src={logoSerman}
+              src={logoHeader}
               alt="Serman Impresores"
               className="h-auto w-[150px] md:w-[225px]"
             />
           </a>
 
-          <label className="relative hidden w-full max-w-[470px] md:block">
+          <label className="relative hidden w-full max-w-[470px] md:ml-6 md:mr-auto md:block">
             <input
               className="h-[42px] w-full rounded-full bg-white px-10 text-sm font-bold text-[#2ea9bf] outline-none placeholder:text-[#2ea9bf]"
               placeholder="Buscar"
@@ -116,22 +105,25 @@ function Header() {
         </label>
       </div>
 
-      <nav className="overflow-x-auto whitespace-nowrap border-b border-slate-100 bg-white px-5 py-5 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        <div className="mx-auto flex w-max min-w-full max-w-[1280px] items-center gap-6 text-sm font-black text-black md:justify-center md:gap-7">
-          {navItems.map((item, index) => (
-            <div key={item} className="flex items-center gap-6 md:gap-7">
-              <a href="#" className="hover:text-[#2ea9bf]">
-                {item}
-              </a>
-
-              {index < navItems.length - 1 && (
-                <span className="h-2 w-2 rounded-full bg-[#2ea9bf]" />
-              )}
-            </div>
-          ))}
-        </div>
-      </nav>
+      <MenuCarousel />
     </header>
+  );
+}
+
+function MenuCarousel() {
+  return (
+    <nav className="overflow-hidden border-b border-slate-100 bg-white py-5" aria-label="Categorías principales">
+      <div className="flex w-max animate-menu-carousel-right items-center gap-12">
+        {[0, 1, 2, 3].map((item) => (
+          <img
+            key={item}
+            src={carruselMenu}
+            alt="Impresión digital, letreros, pendones, plotter, vinilos adhesivos, stickers, tarjetas de presentación, carpetas, packagings y más"
+            className="h-[18px] w-auto max-w-none shrink-0 md:h-[20px]"
+          />
+        ))}
+      </div>
+    </nav>
   );
 }
 
@@ -212,7 +204,7 @@ function Hero() {
         />
       </picture>
 
-      <div className="relative mx-auto flex min-h-[528px] max-w-[1280px] items-end px-7 pb-8 pt-[132px] md:min-h-[374px] md:items-center md:px-11 md:py-8">
+      <div className="relative mx-auto flex min-h-[528px] max-w-[1280px] items-end px-7 pb-8 pt-[132px] md:min-h-[374px] md:items-center md:px-8 md:py-8">
         <div className="w-full max-w-[277px] md:max-w-[435px]">
           <QuoteForm />
         </div>
@@ -242,7 +234,7 @@ function WhatsAppCta() {
 
 function WorkCard({ image, index }) {
   return (
-    <article className="w-[236px] shrink-0 rounded-xl bg-white p-3 shadow-md ring-2 ring-[#078dab] md:w-[240px]">
+    <article className="w-[236px] shrink-0 snap-start rounded-xl bg-white p-3 shadow-md ring-2 ring-[#078dab] md:w-[240px]">
       <div className="flex h-[236px] items-center justify-center border-2 border-[#28a8be] bg-white p-5 md:h-[232px]">
         <img
           src={image}
@@ -255,27 +247,21 @@ function WorkCard({ image, index }) {
 }
 
 function WorksSection() {
-  const loopItems = [...trabajos, ...trabajos];
-
   return (
     <section className="overflow-hidden bg-gradient-to-b from-[#2f9ed0] to-[#1eb4c7] px-0 py-12 md:py-12">
       <h2 className="mx-auto max-w-[540px] px-6 text-center text-3xl font-black leading-tight text-white md:max-w-none md:text-3xl">
         Inspírate y <span className="font-light italic">conoce</span> algunos de nuestros trabajos
       </h2>
 
-      <div className="relative mx-auto mt-8 max-w-[1280px] overflow-hidden">
-        <div className="flex w-max animate-serman-carousel gap-10 px-8 md:gap-9 md:px-16">
-          {loopItems.map((image, index) => (
-            <WorkCard
-              key={`${index}-${image}`}
-              image={image}
-              index={index % trabajos.length}
-            />
+      <div className="mx-auto mt-8 max-w-[1280px] overflow-x-auto px-8 pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="flex w-max snap-x snap-mandatory gap-10 md:gap-9">
+          {trabajos.map((image, index) => (
+            <WorkCard key={`${index}-${image}`} image={image} index={index} />
           ))}
         </div>
       </div>
 
-      <div className="mt-7 flex justify-center gap-2">
+      <div className="mt-3 flex justify-center gap-2">
         <span className="h-2.5 w-2.5 rounded-full bg-white" />
         <span className="h-2.5 w-2.5 rounded-full bg-white" />
         <span className="h-2.5 w-2.5 rounded-full bg-white" />
@@ -323,7 +309,7 @@ function Footer() {
       <div className="mx-auto grid max-w-[900px] gap-10 md:grid-cols-[1.2fr_1fr_1.2fr] md:items-start">
         <div className="flex justify-center md:justify-start">
           <img
-            src={logoSerman}
+            src={logoFooter}
             alt="Serman Impresores"
             className="h-auto w-[270px]"
           />
@@ -347,27 +333,27 @@ function Footer() {
           <p>Ubicación: Los nidos 1820, Independencia, RM.</p>
         </div>
       </div>
-
-      <style>{`
-        @keyframes serman-carousel {
-          from {
-            transform: translateX(0);
-          }
-
-          to {
-            transform: translateX(-50%);
-          }
-        }
-
-        .animate-serman-carousel {
-          animation: serman-carousel 28s linear infinite;
-        }
-
-        .animate-serman-carousel:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
     </footer>
+  );
+}
+
+function GlobalStyles() {
+  return (
+    <style>{`
+      @keyframes menu-carousel-right {
+        from {
+          transform: translateX(-50%);
+        }
+
+        to {
+          transform: translateX(0);
+        }
+      }
+
+      .animate-menu-carousel-right {
+        animation: menu-carousel-right 32s linear infinite;
+      }
+    `}</style>
   );
 }
 
@@ -380,6 +366,7 @@ export default function App() {
       <WorksSection />
       <BenefitsSection />
       <Footer />
+      <GlobalStyles />
     </div>
   );
 }
