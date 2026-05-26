@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import logoHeader from "./assets/logo-serman-1.svg";
 import logoFooter from "./assets/logo-serman-2.svg";
 import linkedinIcon from "./assets/linkedin.svg";
@@ -23,6 +25,8 @@ import trabajosExpressIcon from "./assets/trabajosexpres.svg";
 
 const FORM_EMAIL = "paulo.serra.b@gmail.com";
 const WHATSAPP_URL = "#";
+const INSTAGRAM_URL = "https://www.instagram.com/sermanimpresorescl";
+const LINKEDIN_URL = "https://www.linkedin.com/company/sermancl";
 
 const trabajos = [
   trabajo1,
@@ -79,7 +83,12 @@ function Header() {
           </label>
 
           <div className="flex shrink-0 items-center gap-3 md:gap-4">
-            <a href="https://www.linkedin.com/company/sermancl" aria-label="LinkedIn">
+            <a
+              href={LINKEDIN_URL}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn de Serman"
+            >
               <img
                 src={linkedinIcon}
                 alt=""
@@ -87,7 +96,12 @@ function Header() {
               />
             </a>
 
-            <a href="https://www.instagram.com/sermanimpresorescl" aria-label="Instagram">
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram de Serman"
+            >
               <img
                 src={instagramIcon}
                 alt=""
@@ -112,7 +126,10 @@ function Header() {
 
 function MenuCarousel() {
   return (
-    <nav className="overflow-hidden border-b border-slate-100 bg-white py-5" aria-label="Categorías principales">
+    <nav
+      className="overflow-hidden border-b border-slate-100 bg-white py-5"
+      aria-label="Categorías principales"
+    >
       <div className="flex w-max animate-menu-carousel-right items-center gap-12">
         {[0, 1, 2, 3].map((item) => (
           <img
@@ -128,13 +145,49 @@ function MenuCarousel() {
 }
 
 function QuoteForm() {
+  const [formStatus, setFormStatus] = useState("idle");
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    setFormStatus("sending");
+
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${FORM_EMAIL}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("No se pudo enviar el formulario");
+      }
+
+      form.reset();
+      setFormStatus("success");
+    } catch (error) {
+      console.error(error);
+      setFormStatus("error");
+    }
+  }
+
   return (
     <form
-      action={`https://formsubmit.co/${FORM_EMAIL}`}
-      method="POST"
+      onSubmit={handleSubmit}
       className="w-full rounded-xl bg-white/75 px-7 py-6 shadow-[22px_0_35px_rgba(0,0,0,0.12)] backdrop-blur-sm md:max-w-[435px] md:px-8"
     >
-      <input type="hidden" name="_subject" value="Nueva cotización desde sitio Serman" />
+      <input
+        type="hidden"
+        name="_subject"
+        value="Nueva cotización desde sitio Serman"
+      />
       <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_template" value="table" />
 
@@ -184,10 +237,23 @@ function QuoteForm() {
 
       <button
         type="submit"
-        className="mx-auto block h-9 w-[96px] rounded-md bg-black text-sm font-black text-white transition hover:bg-[#1b6170]"
+        disabled={formStatus === "sending"}
+        className="mx-auto block h-9 w-[120px] rounded-md bg-black text-sm font-black text-white transition hover:bg-[#1b6170] disabled:cursor-not-allowed disabled:opacity-60"
       >
-        Enviar
+        {formStatus === "sending" ? "Enviando..." : "Enviar"}
       </button>
+
+      {formStatus === "success" && (
+        <p className="mt-3 text-center text-sm font-bold text-[#1b6170]">
+          Mensaje enviado correctamente.
+        </p>
+      )}
+
+      {formStatus === "error" && (
+        <p className="mt-3 text-center text-sm font-bold text-red-600">
+          No se pudo enviar. Inténtalo nuevamente.
+        </p>
+      )}
     </form>
   );
 }
@@ -275,7 +341,10 @@ function BenefitsSection() {
     <section className="bg-white px-8 py-16 md:py-20">
       <div className="mx-auto grid max-w-[1130px] grid-cols-1 gap-x-12 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
         {beneficios.map((beneficio) => (
-          <article key={beneficio.titleLines.join(" ")} className="flex items-center gap-4">
+          <article
+            key={beneficio.titleLines.join(" ")}
+            className="flex items-center gap-4"
+          >
             <div className="flex h-[92px] w-[92px] shrink-0 items-center justify-center">
               <img
                 src={beneficio.icon}
