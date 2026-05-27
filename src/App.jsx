@@ -113,20 +113,10 @@ function Header() {
 function MenuCarousel() {
   return (
     <nav
-      className="overflow-hidden border-b border-slate-100 bg-white py-5"
+      className="menu-carousel-strip h-[58px] overflow-hidden border-b border-slate-100 bg-white md:h-[60px]"
+      style={{ backgroundImage: `url(${carruselMenu})` }}
       aria-label="Categorías principales"
-    >
-      <div className="flex w-max animate-menu-carousel-right items-center gap-8 md:gap-12">
-        {[0, 1, 2, 3, 4, 5].map((item) => (
-          <img
-            key={item}
-            src={carruselMenu}
-            alt="Impresión digital, letreros, pendones, plotter, vinilos adhesivos, stickers, tarjetas de presentación, carpetas, packagings y más"
-            className="h-[17px] w-auto max-w-none shrink-0 md:h-[20px]"
-          />
-        ))}
-      </div>
-    </nav>
+    />
   );
 }
 
@@ -395,22 +385,27 @@ function Footer() {
 function GlobalStyles() {
   return (
     <style>{`
-      @keyframes menu-carousel-right {
+      @keyframes menu-carousel-background-right {
         from {
-          transform: translateX(-50%);
+          background-position: 0 center;
         }
 
         to {
-          transform: translateX(0);
+          background-position: 900px center;
         }
       }
 
-      .animate-menu-carousel-right {
-        animation: menu-carousel-right 26s linear infinite;
+      .menu-carousel-strip {
+        background-repeat: repeat-x;
+        background-position: 0 center;
+        background-size: auto 18px;
+        animation: menu-carousel-background-right 26s linear infinite;
       }
 
       @media (max-width: 767px) {
-        .animate-menu-carousel-right {
+        .menu-carousel-strip {
+          height: 58px;
+          background-size: auto 17px;
           animation-duration: 18s;
         }
       }
@@ -420,7 +415,7 @@ function GlobalStyles() {
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-white font-sans">
+    <div className="min-h-screen overflow-x-hidden bg-white font-sans">
       <Header />
       <Hero />
       <WhatsAppCta />
