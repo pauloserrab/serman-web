@@ -75,13 +75,6 @@ function Header() {
             />
           </a>
 
-          <label className="relative hidden w-full max-w-[470px] md:ml-6 md:mr-auto md:block">
-            <input
-              className="h-[42px] w-full rounded-full bg-white px-10 text-sm font-bold text-[#2ea9bf] outline-none placeholder:text-[#2ea9bf]"
-              placeholder="Buscar"
-            />
-          </label>
-
           <div className="flex shrink-0 items-center gap-3 md:gap-4">
             <a
               href={LINKEDIN_URL}
@@ -110,13 +103,6 @@ function Header() {
             </a>
           </div>
         </div>
-
-        <label className="mx-auto mt-5 block w-full max-w-[250px] md:hidden">
-          <input
-            className="h-[46px] w-full rounded-full bg-white px-10 text-center text-lg font-bold text-[#2ea9bf] outline-none placeholder:text-[#2ea9bf]"
-            placeholder="Buscar"
-          />
-        </label>
       </div>
 
       <MenuCarousel />
@@ -130,13 +116,13 @@ function MenuCarousel() {
       className="overflow-hidden border-b border-slate-100 bg-white py-5"
       aria-label="Categorías principales"
     >
-      <div className="flex w-max animate-menu-carousel-right items-center gap-12">
-        {[0, 1, 2, 3].map((item) => (
+      <div className="flex w-max animate-menu-carousel-right items-center gap-8 md:gap-12">
+        {[0, 1, 2, 3, 4, 5].map((item) => (
           <img
             key={item}
             src={carruselMenu}
             alt="Impresión digital, letreros, pendones, plotter, vinilos adhesivos, stickers, tarjetas de presentación, carpetas, packagings y más"
-            className="h-[18px] w-auto max-w-none shrink-0 md:h-[20px]"
+            className="h-[17px] w-auto max-w-none shrink-0 md:h-[20px]"
           />
         ))}
       </div>
@@ -192,7 +178,7 @@ function QuoteForm() {
       <input type="hidden" name="_template" value="table" />
 
       <label className="mb-4 block">
-        <span className="mb-2 block text-sm font-black text-[#1b6170]">
+        <span className="mb-2 block text-sm font-bold text-[#1b6170]">
           Nombre completo <span className="font-medium">(Obligatorio)</span>
         </span>
         <input
@@ -203,7 +189,7 @@ function QuoteForm() {
       </label>
 
       <label className="mb-4 block">
-        <span className="mb-2 block text-sm font-black text-[#1b6170]">
+        <span className="mb-2 block text-sm font-bold text-[#1b6170]">
           Correo electrónico <span className="font-medium">(Obligatorio)</span>
         </span>
         <input
@@ -215,7 +201,7 @@ function QuoteForm() {
       </label>
 
       <label className="mb-4 block">
-        <span className="mb-2 block text-sm font-black text-[#1b6170]">
+        <span className="mb-2 block text-sm font-bold text-[#1b6170]">
           Teléfono de contacto
         </span>
         <input
@@ -225,7 +211,7 @@ function QuoteForm() {
       </label>
 
       <label className="mb-4 block">
-        <span className="mb-2 block text-sm font-black text-[#1b6170]">
+        <span className="mb-2 block text-sm font-bold text-[#1b6170]">
           Mensaje <span className="font-medium">(Obligatorio)</span>
         </span>
         <textarea
@@ -238,7 +224,7 @@ function QuoteForm() {
       <button
         type="submit"
         disabled={formStatus === "sending"}
-        className="mx-auto block h-9 w-[120px] rounded-md bg-black text-sm font-black text-white transition hover:bg-[#1b6170] disabled:cursor-not-allowed disabled:opacity-60"
+        className="mx-auto block h-9 w-[120px] rounded-md bg-black text-sm font-bold text-white transition hover:bg-[#1b6170] disabled:cursor-not-allowed disabled:opacity-60"
       >
         {formStatus === "sending" ? "Enviando..." : "Enviar"}
       </button>
@@ -282,7 +268,7 @@ function Hero() {
 function WhatsAppCta() {
   return (
     <section className="bg-white px-6 py-11 text-center md:py-12">
-      <h2 className="mx-auto max-w-4xl text-3xl font-black leading-tight text-black md:text-4xl">
+      <h2 className="mx-auto max-w-4xl text-3xl font-bold leading-tight text-black md:text-4xl">
         También puedes cotizar en nuestro WhatsApp
       </h2>
       <p className="mt-2 text-2xl text-black md:text-3xl">
@@ -290,7 +276,7 @@ function WhatsAppCta() {
       </p>
       <a
         href={WHATSAPP_URL}
-        className="mt-5 inline-flex h-[54px] min-w-[225px] items-center justify-center rounded-md bg-[#59c51c] px-8 text-xl font-black text-white transition hover:bg-[#45a915]"
+        className="mt-5 inline-flex h-[54px] min-w-[225px] items-center justify-center rounded-md bg-[#59c51c] px-8 text-xl font-bold text-white transition hover:bg-[#45a915]"
       >
         Ir a WhatsApp
       </a>
@@ -315,7 +301,7 @@ function WorkCard({ image, index }) {
 function WorksSection() {
   return (
     <section className="overflow-hidden bg-gradient-to-b from-[#2f9ed0] to-[#1eb4c7] px-0 py-12 md:py-12">
-      <h2 className="mx-auto max-w-[540px] px-6 text-center text-3xl font-black leading-tight text-white md:max-w-none md:text-3xl">
+      <h2 className="mx-auto max-w-[540px] px-6 text-center text-3xl font-bold leading-tight text-white md:max-w-none md:text-3xl">
         Inspírate y <span className="font-light italic">conoce</span> algunos de nuestros trabajos
       </h2>
 
@@ -354,7 +340,7 @@ function BenefitsSection() {
             </div>
 
             <div className="text-black">
-              <h3 className="text-2xl font-black leading-[0.9]">
+              <h3 className="text-2xl font-bold leading-[0.9]">
                 {beneficio.titleLines.map((line) => (
                   <span key={line} className="block">
                     {line}
@@ -385,7 +371,7 @@ function Footer() {
         </div>
 
         <div className="hidden text-xs leading-relaxed text-[#135c6c] md:block">
-          <h3 className="mb-1 text-lg font-black">Información:</h3>
+          <h3 className="mb-1 text-lg font-bold">Información:</h3>
           <p>Compra online y retira GRATIS en nuestra tienda en Independencia.</p>
           <p>Consulta por la instalación de gráficas corporativas en empresas.</p>
           <p>Envíos a regiones.</p>
@@ -394,7 +380,7 @@ function Footer() {
         </div>
 
         <div className="text-sm leading-relaxed text-[#135c6c] md:text-xs">
-          <h3 className="mb-1 text-2xl font-black md:text-lg">Contacto:</h3>
+          <h3 className="mb-1 text-2xl font-bold md:text-lg">Contacto:</h3>
           <p>N° de Contacto: +569 3084 2940</p>
           <p>Horario de Atención:</p>
           <p>Lunes a Viernes de 10:00hrs – 18:00hrs.</p>
@@ -420,7 +406,13 @@ function GlobalStyles() {
       }
 
       .animate-menu-carousel-right {
-        animation: menu-carousel-right 32s linear infinite;
+        animation: menu-carousel-right 26s linear infinite;
+      }
+
+      @media (max-width: 767px) {
+        .animate-menu-carousel-right {
+          animation-duration: 18s;
+        }
       }
     `}</style>
   );
