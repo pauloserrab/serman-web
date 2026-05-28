@@ -65,7 +65,7 @@ const beneficios = [
 function Header() {
   return (
     <header className="bg-white">
-      <div className="bg-[#2ea9bf] px-5 py-5 md:px-9 md:py-6">
+      <div className="bg-[#02A7D9] px-5 py-5 md:px-9 md:py-6">
         <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-5">
           <a href="#" aria-label="Ir al inicio" className="shrink-0">
             <img
@@ -113,10 +113,20 @@ function Header() {
 function MenuCarousel() {
   return (
     <nav
-      className="menu-carousel-strip h-[58px] overflow-hidden border-b border-slate-100 bg-white md:h-[60px]"
-      style={{ backgroundImage: `url(${carruselMenu})` }}
+      className="h-[44px] overflow-hidden border-b border-slate-100 bg-white md:h-[48px]"
       aria-label="Categorías principales"
-    />
+    >
+      <div className="flex h-full w-max animate-menu-carousel-right items-center gap-16 md:gap-20">
+        {[0, 1, 2, 3, 4, 5].map((item) => (
+          <img
+            key={item}
+            src={carruselMenu}
+            alt="Impresión digital, letreros, pendones, plotter, vinilos adhesivos, stickers, tarjetas de presentación, carpetas, packagings y más"
+            className="h-[13px] w-auto max-w-none shrink-0 md:h-[15px]"
+          />
+        ))}
+      </div>
+    </nav>
   );
 }
 
@@ -413,21 +423,18 @@ function Footer() {
 function GlobalStyles() {
   return (
     <style>{`
-      @keyframes menu-carousel-background-right {
+      @keyframes menu-carousel-right {
         from {
-          background-position: 0 center;
+          transform: translateX(-50%);
         }
 
         to {
-          background-position: 900px center;
+          transform: translateX(0);
         }
       }
 
-      .menu-carousel-strip {
-        background-repeat: repeat-x;
-        background-position: 0 center;
-        background-size: auto 18px;
-        animation: menu-carousel-background-right 26s linear infinite;
+      .animate-menu-carousel-right {
+        animation: menu-carousel-right 26s linear infinite;
       }
 
       .benefit-fade-item {
@@ -442,15 +449,13 @@ function GlobalStyles() {
       }
 
       @media (max-width: 767px) {
-        .menu-carousel-strip {
-          height: 58px;
-          background-size: auto 17px;
+        .animate-menu-carousel-right {
           animation-duration: 18s;
         }
       }
 
       @media (prefers-reduced-motion: reduce) {
-        .menu-carousel-strip {
+        .animate-menu-carousel-right {
           animation: none !important;
         }
 
