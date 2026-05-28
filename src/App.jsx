@@ -316,10 +316,11 @@ function BenefitsSection() {
   return (
     <section className="bg-white px-8 py-16 md:py-20">
       <div className="mx-auto grid max-w-[1130px] grid-cols-1 gap-x-12 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
-        {beneficios.map((beneficio) => (
+        {beneficios.map((beneficio, index) => (
           <article
             key={beneficio.titleLines.join(" ")}
-            className="flex items-center gap-4"
+            className="benefit-fade-item flex items-center gap-4"
+            style={{ animationDelay: `${index * 260}ms` }}
           >
             <div className="flex h-[92px] w-[92px] shrink-0 items-center justify-center">
               <img
@@ -374,7 +375,7 @@ function Footer() {
           <p>N° de Contacto: +569 3084 2940</p>
           <p>Horario de Atención:</p>
           <p>Lunes a Viernes de 10:00hrs – 18:00hrs.</p>
-          <p>Correo: jserra22@gmail.com</p>
+          <p>Correo: Serman@contacto.cl</p>
           <p>Ubicación: Los nidos 1820, Independencia, RM.</p>
         </div>
       </div>
@@ -402,11 +403,40 @@ function GlobalStyles() {
         animation: menu-carousel-background-right 26s linear infinite;
       }
 
+      @keyframes benefit-fade-in {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .benefit-fade-item {
+        opacity: 0;
+        animation: benefit-fade-in 850ms ease forwards;
+      }
+
       @media (max-width: 767px) {
         .menu-carousel-strip {
           height: 58px;
           background-size: auto 17px;
           animation-duration: 18s;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .menu-carousel-strip,
+        .benefit-fade-item {
+          animation: none !important;
+        }
+
+        .benefit-fade-item {
+          opacity: 1;
+          transform: none;
         }
       }
     `}</style>
