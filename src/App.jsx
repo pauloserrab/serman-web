@@ -374,7 +374,7 @@ function Footer() {
           <p>N° de Contacto: +569 3084 2940</p>
           <p>Horario de Atención:</p>
           <p>Lunes a Viernes de 10:00hrs – 18:00hrs.</p>
-          <p>Correo: Serman@contacto.cl</p>
+          <p>Correo: jserra22@gmail.com</p>
           <p>Ubicación: Los nidos 1820, Independencia, RM.</p>
         </div>
       </div>
