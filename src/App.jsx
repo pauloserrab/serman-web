@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import logoHeader from "./assets/logo-serman-1.svg";
 import logoFooter from "./assets/logo-serman-2.svg";
@@ -237,16 +237,16 @@ function QuoteForm() {
 function Hero() {
   return (
     <section className="relative overflow-hidden bg-[#03acd4]">
-      <picture className="absolute inset-0 block">
+      <picture className="block w-full">
         <source media="(max-width: 767px)" srcSet={heroMobile} />
         <img
           src={heroDesktop}
           alt="Serman le da vida a tus ideas"
-          className="h-full w-full object-cover object-center"
+          className="block h-auto w-full"
         />
       </picture>
 
-      <div className="relative mx-auto flex min-h-[528px] max-w-[1280px] items-end px-7 pb-8 pt-[132px] md:min-h-[374px] md:items-center md:px-8 md:py-8">
+      <div className="absolute inset-0 mx-auto flex max-w-[1280px] items-end px-7 pb-8 pt-[132px] md:items-center md:px-8 md:py-8">
         <div className="w-full max-w-[277px] md:max-w-[435px]">
           <QuoteForm />
         </div>
@@ -313,14 +313,41 @@ function WorksSection() {
 }
 
 function BenefitsSection() {
+  const sectionRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        threshold: 0.25,
+      }
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="bg-white px-8 py-16 md:py-20">
+    <section ref={sectionRef} className="bg-white px-8 py-16 md:py-20">
       <div className="mx-auto grid max-w-[1130px] grid-cols-1 gap-x-12 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
         {beneficios.map((beneficio, index) => (
           <article
             key={beneficio.titleLines.join(" ")}
-            className="benefit-fade-item flex items-center gap-4"
-            style={{ animationDelay: `${index * 260}ms` }}
+            className={`benefit-fade-item flex items-center gap-4 ${
+              isVisible ? "is-visible" : ""
+            }`}
+            style={{ transitionDelay: `${index * 180}ms` }}
           >
             <div className="flex h-[92px] w-[92px] shrink-0 items-center justify-center">
               <img
@@ -403,21 +430,15 @@ function GlobalStyles() {
         animation: menu-carousel-background-right 26s linear infinite;
       }
 
-      @keyframes benefit-fade-in {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
       .benefit-fade-item {
         opacity: 0;
-        animation: benefit-fade-in 850ms ease forwards;
+        transform: translateY(12px);
+        transition: opacity 700ms ease, transform 700ms ease;
+      }
+
+      .benefit-fade-item.is-visible {
+        opacity: 1;
+        transform: translateY(0);
       }
 
       @media (max-width: 767px) {
@@ -429,14 +450,14 @@ function GlobalStyles() {
       }
 
       @media (prefers-reduced-motion: reduce) {
-        .menu-carousel-strip,
-        .benefit-fade-item {
+        .menu-carousel-strip {
           animation: none !important;
         }
 
         .benefit-fade-item {
           opacity: 1;
           transform: none;
+          transition: none;
         }
       }
     `}</style>
