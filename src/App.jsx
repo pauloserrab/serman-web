@@ -27,6 +27,7 @@ const FORM_EMAIL = "paulo.serra.b@gmail.com";
 const WHATSAPP_URL = "#";
 const INSTAGRAM_URL = "https://www.instagram.com/sermanimpresorescl";
 const LINKEDIN_URL = "https://www.linkedin.com/company/sermancl";
+const TERMS_PDF_URL = "/documentos/terminos-y-condiciones.pdf";
 
 const trabajos = [
   trabajo1,
@@ -65,7 +66,7 @@ const beneficios = [
 function Header() {
   return (
     <header className="bg-white">
-      <div className="bg-[#02A7D9] px-5 py-5 md:px-9 md:py-6">
+      <div className="bg-[#2ea9bf] px-5 py-5 md:px-9 md:py-6">
         <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-5">
           <a href="#" aria-label="Ir al inicio" className="shrink-0">
             <img
@@ -415,6 +416,17 @@ function Footer() {
           <p>Correo: Serman@contacto.cl</p>
           <p>Ubicación: Los nidos 1820, Independencia, RM.</p>
         </div>
+      </div>
+
+      <div className="mx-auto mt-8 max-w-[900px] border-t border-[#d7d7d7] pt-5 text-center md:text-left">
+        <a
+          href={TERMS_PDF_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="text-sm font-bold text-[#135c6c] underline-offset-4 hover:underline"
+        >
+          Términos y condiciones
+        </a>
       </div>
     </footer>
   );
