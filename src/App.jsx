@@ -415,18 +415,18 @@ function Footer() {
           <p>Lunes a Viernes de 10:00hrs – 18:00hrs.</p>
           <p>Correo: Serman@contacto.cl</p>
           <p>Ubicación: Los nidos 1820, Independencia, RM.</p>
-        </div>
-      </div>
 
-      <div className="mx-auto mt-8 max-w-[900px] border-t border-[#d7d7d7] pt-5 text-center md:text-left">
-        <a
-          href={TERMS_PDF_URL}
-          target="_blank"
-          rel="noreferrer"
-          className="text-sm font-bold text-[#135c6c] underline-offset-4 hover:underline"
-        >
-          Términos y condiciones
-        </a>
+          <p className="mt-2">
+            <a
+              href={TERMS_PDF_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="underline-offset-4 hover:underline"
+            >
+              Términos y condiciones
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );
