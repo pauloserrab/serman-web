@@ -23,7 +23,7 @@ import produccionIcon from "./assets/produccion.svg";
 import envioIcon from "./assets/envio.svg";
 import trabajosExpressIcon from "./assets/trabajosexpres.svg";
 
-const FORM_EMAIL = "paulo.serra.b@gmail.com";
+const FORM_EMAIL = "contacto@sermanspa.com";
 const WHATSAPP_URL = "#";
 const INSTAGRAM_URL = "https://www.instagram.com/sermanimpresorescl";
 const LINKEDIN_URL = "https://www.linkedin.com/company/sermancl";
